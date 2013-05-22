@@ -1,6 +1,8 @@
 class Friend < ActiveRecord::Base
   attr_accessible :email, :friendshiplevel, :fullname, :nickname, :phone, :website
 
+  mount_uploader :photo, PhotoUploader
+
   FRIENDSHIP_LEVELS = [ ["Casual", 1], ["Good", 2], ["Close", 3], ["Best", 4] ]\
 
   #validations
