@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :friendshiplevel %><br />
-    <%= f.number_field :friendshiplevel %>
+    <%= f.select :friendshiplevel, ["Casual", "Good", "Close", "Best"] %>
   </div>
   <div class="actions">
     <%= f.submit %>
