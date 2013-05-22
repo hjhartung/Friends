@@ -1,7 +1,9 @@
 class Friend < ActiveRecord::Base
   attr_accessible :email, :friendshiplevel, :fullname, :nickname, :phone, :website
 
-  FRIENDSHIP_LEVELS = [ ["Casual", 1], ["Good", 2], ["Close", 3], ["Best", 4] ]\
+  mount_uploader :photo, PhotoUploader
+
+  FRIENDSHIP_LEVELS = [ ["Casual", 1], ["Good", 2], ["Close", 3], ["Best", 4] ]
 
   #validations
   validates_format_of :website, :with => /^(http:\/\/)?(www\.)?(\w+[-\.]?){1,}\.(com|edu|org|uk|net|gov|biz|info|mil)$/, :message => "is not valid format", :allow_blank => true
