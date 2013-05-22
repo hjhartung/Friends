@@ -46,6 +46,11 @@ class FriendsController < ApplicationController
       if @friend.save
         format.html { redirect_to @friend, notice: 'Friend was successfully created.' }
         format.json { render json: @friend, status: :created, location: @friend }
+        # Provide an email confirmation if all is good...
+        FriendMailer.new_friend_msg(@friend).deliver
+
+        # Now a page confirmation as well...
+        flash[:notice] = "#{@friend.nickname} has been added as a friend and notified by email."
       else
         format.html { render action: "new" }
         format.json { render json: @friend.errors, status: :unprocessable_entity }
@@ -79,5 +84,10 @@ class FriendsController < ApplicationController
       format.html { redirect_to friends_url }
       format.json { head :no_content }
     end
+    # Provide an email confirmation if all is good...
+    FriendMailer.remove_friend_msg(@friend).deliver
+
+    # Now a page confirmation as well...
+    flash[:notice] = "#{@friend.fullname} has been removed as a friend and notified by email."
   end
 end
