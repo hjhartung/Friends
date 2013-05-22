@@ -1,5 +1,5 @@
 class Friend < ActiveRecord::Base
-  attr_accessible :email, :friendshiplevel, :fullname, :nickname, :phone, :website
+  attr_accessible :email, :friendshiplevel, :fullname, :nickname, :phone, :website, :photo
 
   mount_uploader :photo, PhotoUploader
 
